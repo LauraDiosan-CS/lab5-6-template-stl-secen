@@ -6,10 +6,14 @@
 #include "Console.h"
 int main()
 {
-	std::cout << "Starting tests!";
-	tests();
-    std::cout << "Tests done!";
-	Repo <Book> rep = Repo<Book>();
+	const bool ENABLE_TESTS = true;
+	if (ENABLE_TESTS)
+	{
+		std::cout << "Starting tests!";
+		tests();
+		std::cout << "Tests done!";
+	}
+	FileRepo <Book> rep = FileRepo<Book>("bookData.txt");
 	Service serv = Service(rep);
 	Console cons = Console(serv);
 	cons.run();

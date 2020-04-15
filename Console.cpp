@@ -115,7 +115,7 @@ void Console::printPlayer(Book& pl)
 
 Console::Console()
 {
-	this->m_sev = Service();
+	this->m_sev = Service("debug.txt");
 	this->isClosed = false;
 }
 
@@ -131,10 +131,12 @@ Console::Console(Service s)
 
 void Console::run()
 {
+	m_sev.readFromFile();
 	while (!(this->isClosed))
 	{
 
 		showMenu();
 		handleInput();
+		m_sev.writeToFile();
 	}
 }

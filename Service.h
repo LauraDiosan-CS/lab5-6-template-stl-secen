@@ -1,14 +1,17 @@
 #pragma once
 #include "Book.h"
-#include "Repo.h"
+#include "FileRepo.h"
 #include <unordered_map>
+#include <string>
 class Service
 {
 private:
-	Repo<Book> rep;
+	std::string filename;
+	FileRepo<Book> rep;
 public:
 	Service();
-	Service(Repo<Book>& rp);
+	Service(std::string fname);
+	Service(FileRepo<Book>& rp);
 	~Service();
 	void addElement(const char* asdf, unsigned int sum, const char* name);
 	void removeElementAtPos(int i);
@@ -16,6 +19,8 @@ public:
 	bool isBorrowed(const char* title);
 	std::priority_queue<Book> getArray();
 	unsigned int getSize();
+	void readFromFile();
+	void writeToFile();
 };
 
 

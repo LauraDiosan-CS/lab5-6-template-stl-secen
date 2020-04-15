@@ -1,6 +1,7 @@
 #include "Book.h"
 #include <stdexcept>
 #include <cstring>
+#include <algorithm>
 Book::Book()
 {
 	m_author = new char[2];
@@ -134,9 +135,11 @@ std::istream& operator>>(std::istream &is, Book& c)
 	std::string author,pubdate,name;
 	std::getline(is, author, ';');
 	std::getline(is, pubdate, ';');
-	std::getline(is, name, ';');
+	std::getline(is, name, ';'); 
+	author.erase(std::remove(author.begin(), author.end(), '\n'), author.end()); //remove any trailing newlines
 	c.setAuthor(author.c_str());
 	c.setPubDate(std::stoi(pubdate));
+	name.erase(std::remove(name.begin(), name.end(), '\n'), name.end()); // remoe any trailing newlines
 	c.setName(name.c_str());
 	if (false)
 		is.setstate(std::ios::failbit);

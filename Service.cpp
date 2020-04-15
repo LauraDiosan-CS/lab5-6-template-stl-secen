@@ -3,10 +3,17 @@
 
 Service::Service()
 {
-	rep = Repo<Book>();
+	this->filename = "debug.txt";
+	this->rep = FileRepo<Book>("debug.txt");
 }
 
-Service::Service(Repo<Book>& rp)
+Service::Service(std::string fname)
+{
+	this->filename = fname;
+	this->rep = FileRepo<Book>(filename.c_str());
+}
+
+Service::Service(FileRepo<Book>& rp)
 {
 	this->rep = rp;
 }
@@ -50,4 +57,14 @@ std::priority_queue<Book> Service::getArray()
 unsigned int Service::getSize()
 {
 	return this->rep.getSize();
+}
+
+void Service::readFromFile()
+{
+	rep.loadFromFile();
+}
+
+void Service::writeToFile()
+{
+	rep.saveToFile();
 }

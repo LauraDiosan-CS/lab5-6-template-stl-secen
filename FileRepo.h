@@ -11,8 +11,8 @@ class FileRepo :
 {
 private:
 	char* m_filename;
-	FileRepo() {};
 public:
+	FileRepo() {};
 	FileRepo(const char* newFilename) {
 		m_filename = new char[strlen(newFilename)+1];
 		strcpy_s(m_filename, strlen(newFilename)+1,newFilename); 
