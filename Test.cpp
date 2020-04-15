@@ -25,9 +25,11 @@ void tests()
 		assert(rep.getBorrowedStatus("Ion") == true);
 		FileRepo<Book> frepo("testing.txt");
 		frepo.addItem(e);
+		frepo.setBorrowedStatus("Ion", true);
 		frepo.saveToFile();
 		frepo.clear();
 		frepo.loadFromFile();
+		assert(frepo.getBorrowedStatus("Ion") == true);
 		assert(frepo.getSize() == 1);
 	}
 }

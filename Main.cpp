@@ -13,7 +13,7 @@ int main()
 		tests();
 		std::cout << "Tests done!";
 	}
-	FileRepo <Book> rep = FileRepo<Book>("bookData.txt");
+	FileRepo <Book> rep = FileRepo<Book>("bookData.txt","takenData.txt");
 	Service serv = Service(rep);
 	Console cons = Console(serv);
 	cons.run();

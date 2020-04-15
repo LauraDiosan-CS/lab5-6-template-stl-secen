@@ -139,7 +139,7 @@ std::istream& operator>>(std::istream &is, Book& c)
 	author.erase(std::remove(author.begin(), author.end(), '\n'), author.end()); //remove any trailing newlines
 	c.setAuthor(author.c_str());
 	c.setPubDate(std::stoi(pubdate));
-	name.erase(std::remove(name.begin(), name.end(), '\n'), name.end()); // remoe any trailing newlines
+	name.erase(std::remove(name.begin(), name.end(), '\n'), name.end()); // remove any trailing newlines
 	c.setName(name.c_str());
 	if (false)
 		is.setstate(std::ios::failbit);
