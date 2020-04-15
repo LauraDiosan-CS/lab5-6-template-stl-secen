@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include "Test.h"
-
+#include "Console.h"
 int main()
 {
 	std::cout << "Starting tests!";
 	tests();
     std::cout << "Tests done!";
+	Repo <Book> rep = Repo<Book>();
+	Service serv = Service(rep);
+	Console cons = Console(serv);
+	cons.run();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
