@@ -18,7 +18,7 @@ Service::~Service()
 void Service::addElement(const char* asdf, unsigned int sum, const char* name)
 {
 	Book e = Book(asdf, sum, name);
-	borrowedStatus[e.getName()]=false;
+	rep.setBorrowedStatus(e.getName(), false);
 	this->rep.addItem(e);
 }
 
@@ -29,9 +29,9 @@ void Service::removeElementAtPos(int i)
 
 bool Service::borrow(const char* title)
 {
-	if (!borrowedStatus[title])
+	if (!rep.getBorrowedStatus(title))
 	{
-		borrowedStatus[title] = true;
+		rep.setBorrowedStatus(title,true);
 		return true;
 	}
 	return false;
@@ -39,7 +39,7 @@ bool Service::borrow(const char* title)
 
 bool Service::isBorrowed(const char* title)
 {
-	return borrowedStatus[title];
+	return rep.getBorrowedStatus(title);
 }
 
 std::priority_queue<Book> Service::getArray()

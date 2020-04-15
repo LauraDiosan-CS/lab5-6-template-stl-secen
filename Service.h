@@ -6,7 +6,6 @@ class Service
 {
 private:
 	Repo<Book> rep;
-	std::unordered_map<std::string, bool> borrowedStatus;
 public:
 	Service();
 	Service(Repo<Book>& rp);

@@ -99,8 +99,47 @@ char* Book::getName()
 	return m_name;
 }
 
+void Book::setName(const char* newName)
+{
+	delete[] this->m_name;
+	this->m_name = new char[strlen(newName)+1];
+	strcpy_s(this->m_name,strlen(newName)+1, newName);
+}
+
+void Book::setAuthor(const char* newAuthor)
+{
+	delete[] this->m_author;
+	this->m_author = new char[strlen(newAuthor) + 1];
+	strcpy_s(this->m_author,strlen(newAuthor)+1, newAuthor);
+}
+
+void Book::setPubDate(unsigned int pubdate)
+{
+	m_publicationDate = pubdate;
+}
+
 bool Book::operator < (const Book& other) const
 {
 	return (this->m_publicationDate < other.m_publicationDate);
 }
 
+std::ostream& operator<<(std::ostream& out, const Book& c)
+{
+	out << c.m_author << ';' << c.m_publicationDate << ';' << c.m_name;
+	return out;
+}
+
+std::istream& operator>>(std::istream &is, Book& c)
+{
+	std::string author,pubdate,name;
+	std::getline(is, author, ';');
+	std::getline(is, pubdate, ';');
+	std::getline(is, name, ';');
+	c.setAuthor(author.c_str());
+	c.setPubDate(std::stoi(pubdate));
+	c.setName(name.c_str());
+	if (false)
+		is.setstate(std::ios::failbit);
+	return is;
+
+}

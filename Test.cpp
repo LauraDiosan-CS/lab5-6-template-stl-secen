@@ -2,7 +2,7 @@
 #include "Repo.h"
 #include <assert.h>
 #include <iostream>
-
+#include "FileRepo.h"
 void tests()
 {
 	{
@@ -21,5 +21,13 @@ void tests()
 		assert(rep.getAll().size() == 1);
 		rep.addItem(e2);
 		assert(rep.getAll().size() == 2);
+		rep.setBorrowedStatus("Ion", true);
+		assert(rep.getBorrowedStatus("Ion") == true);
+		FileRepo<Book> frepo("testing.txt");
+		frepo.addItem(e);
+		frepo.saveToFile();
+		frepo.clear();
+		frepo.loadFromFile();
+		assert(frepo.getSize() == 1);
 	}
 }

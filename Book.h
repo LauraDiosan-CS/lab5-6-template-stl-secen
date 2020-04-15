@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include <string>
+#include <iostream>
 class Book
 {
 private:
@@ -20,6 +21,11 @@ public:
 	char* getAuthor();
 	unsigned int getPubDate();
 	char* getName();
+	void setName(const char* newName);
+	void setAuthor(const char* newAuthor);
+	void setPubDate(unsigned int pubdate);
 	bool operator < (const Book& other) const;
+	friend std::ostream & operator << (std::ostream& out, const Book& c);
+	friend std::istream& operator >> (std::istream &in, Book& c);
 };
 
