@@ -12,6 +12,7 @@ void Console::showMenu()
 	std::cout << "3.Remove Book\n";
 	std::cout << "4.List All Books\n";
 	std::cout << "5.Borrow Book\n";
+	std::cout << "6.Return Book\n";
 	std::cout << "0.Exit\n";
 	std::cout << "Option: ";
 }
@@ -40,6 +41,20 @@ void Console::handleInput()
 	case 5:
 		this->handleBorrowBook();
 		break;
+	case 6:
+		this->handleReturnBook();
+		break;
+	}
+}
+void Console::handleReturnBook()
+{
+	std::string input;
+	std::cout << "Please enter the name of the book: ";
+	std::getline(std::cin, input);
+	std::getline(std::cin, input);
+	if (!(this->m_sev.unborrow(input.c_str())))
+	{
+		std::cout << "Can't unborrow book!";
 	}
 }
 void Console::handleBorrowBook()
@@ -63,9 +78,8 @@ void Console::handleAdd()
 void Console::handleModify()
 {
 	unsigned int pos = 0;
-	std::cout << "\nPosition in the array: ";
-	std::cin >> pos;
 	Book p = this->handleCreatePlayer();
+	this->m_sev.modifyElement(p.getAuthor(), p.getPubDate(), p.getName());
 	//this->m_sev.modifyElement(pos, p.getAuthor(), p.getPubDate(), p.getName());
 	//TODO: Implement
 }
@@ -86,9 +100,11 @@ void Console::handleListAll()
 
 void Console::handleRemove()
 {
-	unsigned int pos = 0;
-	std::cout << "\nPosition in the array: ";
-	m_sev.removeElementAtPos(pos);
+	std::string str;
+	std::cout << "\nName of the book: ";
+	std::getline(std::cin, str);
+	std::getline(std::cin, str);
+	m_sev.removeElementByName(str.c_str());
 }
 
 Book Console::handleCreatePlayer()

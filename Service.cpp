@@ -49,6 +49,16 @@ bool Service::isBorrowed(const char* title)
 	return rep.getBorrowedStatus(title);
 }
 
+bool Service::unborrow(const char* title)
+{
+	if (rep.getBorrowedStatus(title))
+	{
+		rep.setBorrowedStatus(title, false);
+		return true;
+	}
+	return false;
+}
+
 std::priority_queue<Book> Service::getArray()
 {
 	return this->rep.getAll();
@@ -67,4 +77,15 @@ void Service::readFromFile()
 void Service::writeToFile()
 {
 	rep.saveToFile();
+}
+void Service::removeElementByName(const char* title)
+{
+	rep.removeElementByName(title);
+}
+
+void Service::modifyElement(const char* asdf, unsigned int sum, const char* name)
+{
+	Book e = Book(asdf, sum, name);
+	rep.setBorrowedStatus(e.getName(), false);
+	this->rep.modifyElement(e);
 }

@@ -18,11 +18,16 @@ void tests()
 		Repo<Book> rep;
 		assert(rep.getAll().size() == 0);
 		rep.addItem(e);
+		rep.modifyElement(Book("ok", 0, "Ion"));
+		Book b = rep.getAll().top();
+		assert(strcmp(b.getAuthor(),"ok")==0);
 		assert(rep.getAll().size() == 1);
 		rep.addItem(e2);
 		assert(rep.getAll().size() == 2);
 		rep.setBorrowedStatus("Ion", true);
 		assert(rep.getBorrowedStatus("Ion") == true);
+		rep.removeElementByName("Ion");
+		assert(rep.getAll().size()==1);
 		FileRepo<Book> frepo("testing.txt");
 		frepo.addItem(e);
 		frepo.setBorrowedStatus("Ion", true);

@@ -17,10 +17,13 @@ public:
 	void removeElementAtPos(int i);
 	bool borrow(const char* title);
 	bool isBorrowed(const char* title);
+	bool unborrow(const char* title);
 	std::priority_queue<Book> getArray();
 	unsigned int getSize();
 	void readFromFile();
 	void writeToFile();
+	void removeElementByName(const char* title);
+	void modifyElement(const char* asdf, unsigned int sum, const char* name);
 };
 
 

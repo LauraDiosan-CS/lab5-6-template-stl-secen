@@ -15,6 +15,7 @@ private:
 	void handleBorrowBook();
 	Book handleCreatePlayer();
 	void printPlayer(Book& pl);
+	void handleReturnBook();
 public:
 	Console();
 	~Console();

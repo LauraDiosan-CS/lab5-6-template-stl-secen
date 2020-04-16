@@ -17,5 +17,36 @@ public:
 	   bool getBorrowedStatus(const char* name) { return borrowedStatus[name]; }
 	   void removeElementAtPos(int i) { entities.pop(); }
 	   void clear() { while (!entities.empty()) { entities.pop(); } borrowedStatus.clear(); }
+	   void removeElementByName(const char* title) 
+	   { 
+			std::priority_queue<T> aux; 
+			while (!entities.empty()) 
+			{
+				T auxElem;
+				auxElem = entities.top();
+				entities.pop();
+				if (strcmp(auxElem.getName(), title) == 0)
+					continue;
+				aux.push(auxElem);
+			} 
+			entities = aux;
+		}
+	   void modifyElement(T b)
+	   {
+		   std::priority_queue<T> aux;
+		   while (!entities.empty())
+		   {
+			   T auxElem;
+			   auxElem = entities.top();
+			   entities.pop();
+			   if (strcmp(auxElem.getName(), b.getName()) == 0)
+			   {
+				   aux.push(b);
+				   continue;
+			   }
+			   aux.push(auxElem);
+		   }
+		   entities = aux;
+	   }
 };
 
